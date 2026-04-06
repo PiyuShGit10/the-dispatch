@@ -41,6 +41,7 @@ export default function SourcesLog({ sources }: SourcesLogProps) {
           display: 'flex',
           flexWrap: 'wrap',
           gap: '8px',
+          width: '100%',
         }}
       >
         {uniqueSources.map((src) => {
@@ -48,7 +49,9 @@ export default function SourcesLog({ sources }: SourcesLogProps) {
           return (
             <span
               key={src.label}
+              title={src.label}
               style={{
+                display: 'inline-block',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '11px',
                 fontWeight: 700,
@@ -59,6 +62,9 @@ export default function SourcesLog({ sources }: SourcesLogProps) {
                 cursor: 'pointer',
                 transition: 'background 100ms ease, color 100ms ease',
                 whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '100%',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'var(--black)'

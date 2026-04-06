@@ -24,15 +24,7 @@ export default function Masthead({ activeSection }: MastheadProps) {
     >
       <MastheadStyles />
       {/* Row 1: Date / Logo / Actions */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '14px 2rem',
-          borderBottom: 'var(--border)',
-        }}
-      >
+      <div className="masthead-top">
         {/* Left: Date + Edition */}
         <div
           style={{
@@ -89,20 +81,14 @@ export default function Masthead({ activeSection }: MastheadProps) {
       </div>
 
       {/* Row 2: Navigation */}
-      <nav
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          overflow: 'auto',
-        }}
-        className="no-scrollbar"
-      >
+      <nav className="masthead-nav">
         {NAV_ITEMS.map((item, index) => {
           const isActive = activeSection?.toLowerCase() === item.toLowerCase()
           return (
             <a
               key={item}
               href={`/section/${item.toLowerCase()}`}
+              className="masthead-nav-item"
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '11px',
@@ -130,9 +116,55 @@ export default function Masthead({ activeSection }: MastheadProps) {
 export function MastheadStyles() {
   return (
     <style>{`
+      .masthead-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 2rem;
+        border-bottom: var(--border);
+      }
+
+      .masthead-nav {
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+      }
+      .masthead-nav::-webkit-scrollbar {
+        display: none;
+      }
+
       @media (max-width: 640px) {
+        .masthead-top {
+          padding: 14px 1rem;
+        }
         .masthead-actions {
           display: none !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .masthead-nav {
+          justify-content: flex-start;
+          scroll-snap-type: x mandatory;
+        }
+        .masthead-nav-item {
+          scroll-snap-align: start;
+          flex-shrink: 0;
+        }
+        
+        /* A subtle right shadow to indicate scrollability on mobile */
+        .masthead-nav::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 24px;
+          height: 100%;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9));
+          pointer-events: none;
         }
       }
     `}</style>
