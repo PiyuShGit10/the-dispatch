@@ -67,8 +67,8 @@ app.use((err, req, res, _next) => {
 });
 
 // ─── Start server ──────────────────────────────────────────────────
-app.listen(config.port, () => {
-  log.info(`Truth Engine API running on http://localhost:${config.port}`);
+app.listen(config.port, '0.0.0.0', () => {
+  log.info(`Truth Engine API running on http://0.0.0.0:${config.port}`);
 
   // Start background discovery scheduler
   startScheduler();
