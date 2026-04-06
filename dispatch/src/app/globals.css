@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ────────────────────────────────────────────────── */
+:root {
+  --orange: #D97757;
+  --black: #0a0a0a;
+  --white: #FAFAF5;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-serif: 'Courier Prime', 'Courier New', monospace;
+  --border: 3px solid #0a0a0a;
+  --border-thick: 5px solid #0a0a0a;
+  --border-thin: 2px solid #0a0a0a;
+  --shadow-sm: 3px 3px 0px #0a0a0a;
+  --shadow-md: 6px 6px 0px #0a0a0a;
+  --shadow-lg: 10px 10px 0px #0a0a0a;
+  --shadow-hover: 5px 5px 0px #0a0a0a;
+  --text-muted: rgba(10,10,10,0.55);
+  --text-dek: rgba(10,10,10,0.72);
+}
+
+/* ─── Tailwind v4 Theme ────────────────────────────────────────────── */
+@theme {
+  --color-orange: #D97757;
+  --color-ink: #0a0a0a;
+  --color-paper: #FAFAF5;
+  --color-confidence-high: #3a9e5f;
+  --color-confidence-medium: #D97757;
+  --color-confidence-low: #c0392b;
+
+  --font-family-mono: 'Space Mono', 'Courier New', monospace;
+  --font-family-serif: 'Courier Prime', 'Courier New', monospace;
+
+  --shadow-neo-sm: 3px 3px 0px #0a0a0a;
+  --shadow-neo-md: 6px 6px 0px #0a0a0a;
+  --shadow-neo-lg: 10px 10px 0px #0a0a0a;
+  --shadow-neo-hover: 5px 5px 0px #0a0a0a;
+}
+
+/* ─── Base Resets ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ─── Animations ───────────────────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes gendot {
+  0%, 80%, 100% { transform: scale(0.5); opacity: 0.4; }
+  40%           { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--white);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border: 2px solid var(--white);
+}
+
+/* ─── Selection ────────────────────────────────────────────────────── */
+::selection {
+  background: var(--orange);
+  color: var(--white);
+}
+
+/* ─── Utility Classes ──────────────────────────────────────────────── */
+.neo-border {
+  border: var(--border);
+}
+
+.neo-border-thick {
+  border: var(--border-thick);
+}
+
+.neo-border-thin {
+  border: var(--border-thin);
+}
+
+.neo-shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.neo-shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.neo-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.neo-interactive {
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.neo-interactive:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.neo-interactive:active {
+  transform: translate(1px, 1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-dek {
+  color: var(--text-dek);
+}
+
+.uppercase-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ─── Body Text Styles ─────────────────────────────────────────────── */
+.article-body {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.article-body p {
+  margin-bottom: 1.1rem;
+}
+
+.article-body h2 {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid var(--black);
+  margin: 1.75rem 0 0.75rem;
+  padding-bottom: 0.35rem;
+}
+
+/* ─── No Scrollbar Utility ─────────────────────────────────────────── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
